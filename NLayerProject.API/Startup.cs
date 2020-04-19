@@ -19,6 +19,12 @@ using NLayerProject.Data.Repositories;
 using NLayerProject.Data.UnitOfWork;
 using NLayerProject.Service.Services;
 using AutoMapper;
+using NLayerProject.API.Filters;
+using Microsoft.AspNetCore.Diagnostics;
+using NLayerProject.API.DTOs;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using NLayerProject.API.Extensions;
 
 namespace NLayerProject.API
 {
@@ -35,8 +41,7 @@ namespace NLayerProject.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-
-
+            services.AddScoped(typeof(GenericNotFoundFilter<>));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IService<>), typeof(Service<>));
@@ -45,7 +50,12 @@ namespace NLayerProject.API
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<AppDbContext>();
-            services.AddControllers();
+
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(new ValidationFilter());
+
+            });
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -60,6 +70,8 @@ namespace NLayerProject.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCustomException();
+
 
             app.UseHttpsRedirection();
 
