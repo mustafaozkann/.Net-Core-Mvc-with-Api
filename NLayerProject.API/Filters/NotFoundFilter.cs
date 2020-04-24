@@ -17,7 +17,7 @@ namespace NLayerProject.API.Filters
         {
             _service = service;
         }
-         
+
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             int id = (int)context.ActionArguments.Values.FirstOrDefault();
