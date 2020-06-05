@@ -20,5 +20,14 @@ namespace NLayerProject.Service.Services
         {
             return await _unitOfWork.Categories.GetWithProductsByIdAsync(categoryId);
         }
+
+        public async Task Remove(int id)
+        {
+            var category = await _unitOfWork.Categories.GetByIdAsync(id);
+            category.IsDeleted = true;
+            await _unitOfWork.CommitAsync();
+
+
+        }
     }
 }

@@ -9,6 +9,7 @@ using NLayerProject.API.DTOs;
 using NLayerProject.Core.Services;
 using Mapster;
 using NLayerProject.Core.Entities;
+using Microsoft.CodeAnalysis;
 
 namespace NLayerProject.API.Controllers
 {
@@ -24,11 +25,13 @@ namespace NLayerProject.API.Controllers
             _categoryService = categoryService;
             _mapper = mapper;
         }
-
+       
+        
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var categories = await _categoryService.GetAllAsync();
+           
 
             return Ok(_mapper.Map<IEnumerable<CategoryDto>>(categories));
         }
@@ -65,7 +68,7 @@ namespace NLayerProject.API.Controllers
 
         [HttpDelete("{id}")]
         public IActionResult Remove(int id)
-        { 
+        {
             var category = _categoryService.GetByIdAsync(id).Result;
             _categoryService.Remove(category);
 

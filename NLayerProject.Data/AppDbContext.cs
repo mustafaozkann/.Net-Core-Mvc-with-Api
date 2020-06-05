@@ -16,7 +16,7 @@ namespace NLayerProject.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString: @"Server=.;Database=NLayerDb;Trusted_Connection=true;");
+            //optionsBuilder.UseSqlServer(connectionString: @"Server=.;Database=NLayerDb;Trusted_Connection=true;");
         }
 
         public DbSet<Category> Categories { get; set; }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NLayerProject.Core\NLayerProject.Core.csproj" />
     <ProjectReference Include="..\NLayerProject.Data\NLayerProject.Data.csproj" />
   </ItemGroup>
