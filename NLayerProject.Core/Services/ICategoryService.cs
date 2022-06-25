@@ -9,6 +9,7 @@ namespace NLayerProject.Core.Services
     public interface ICategoryService : IService<Category>
     {
         Task<Category> GetWithProductsByIdAsync(int categoryId);
-       Task Remove(int id);
+        Task<IEnumerable<Category>> GetWithProductsAsync();
+        Task Remove(int id);
     }
 }

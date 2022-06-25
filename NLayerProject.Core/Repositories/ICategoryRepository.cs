@@ -9,5 +9,6 @@ namespace NLayerProject.Core.Repositories
     public interface ICategoryRepository : IRepository<Category>
     {
         Task<Category> GetWithProductsByIdAsync(int categoryId);
+        Task<IEnumerable<Category>> GetWithProductsAsync();
     }
 }
